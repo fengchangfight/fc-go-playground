@@ -8,10 +8,11 @@ import (
 )
 
 func main() {
-    url := "http://192.168.38.94:8115/frame-rule"
+    //url := "http://192.168.38.94:8115/frame-rule"
+    url := "http://localhost:5000/"
     fmt.Println("URL:>", url)
 
-    var jsonStr = []byte(`{"sentence":"I would like to book a ticket from Shanghai to Beijing","rule":"what","keylist":"origin,destination"}`)
+    var jsonStr = []byte(`{"sentence":"I would like to book a ticket from Shanghai to Beijing","rule":".* from (\\w+) to (\\w+)","keylist":"origin,destination"}`)
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
     req.Header.Set("X-Custom-Header", "myvalue")
     req.Header.Set("Content-Type", "application/json")
